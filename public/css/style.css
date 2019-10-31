@@ -1,11 +1,5 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
 
+<<<<<<< HEAD
 body {
   background-color: grey;
   font-family: Arial, Helvetica, sans-serif;
@@ -81,4 +75,11 @@ button:hover {
   .cancelbtn, .signupbtn {
      width: 100%;
   }
+=======
+
+.seats{
+  margin-top: 10em;
+  position: relative;
+  width: 50%; 
+>>>>>>> ff10608d8b546a05847a7cd5451016c8402c6175
 }
