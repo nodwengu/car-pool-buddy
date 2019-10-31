@@ -32,11 +32,17 @@ function errorHandler(err, req, res, next) {
 }
 
 
+
+
+
 app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
+app.get('/information', (req, res) => {
+  res.render('Info')
 
+});
 
 app.use(errorHandler);
 
