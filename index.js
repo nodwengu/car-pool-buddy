@@ -7,6 +7,21 @@ const session = require('express-session');
 
 const app = express();
 
+const { Pool, Client } = require('pg');
+
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+  useSSL = true;
+}
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool_db';
+
+const pool = new Pool({
+  connectionString,
+  ssl: useSSL
+});
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -32,11 +47,17 @@ function errorHandler(err, req, res, next) {
 }
 
 
+
+
+
 app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
+app.get('/information', (req, res) => {
+  res.render('Info')
 
+});
 
 app.use(errorHandler);
 
