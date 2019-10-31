@@ -50,12 +50,16 @@ function errorHandler(err, req, res, next) {
 }
 
 
+
+
+
 app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
 app.get('/interest', async( req, res, next) => {
 
+app.get('/information', (req, res) => {
 
     console.log( await people.thumbsUp());
   
@@ -63,6 +67,8 @@ app.get('/interest', async( req, res, next) => {
       
       counter: await people.thumbsUp()
     }); 
+
+});
 
 });
 
