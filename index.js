@@ -35,6 +35,9 @@ function errorHandler(err, req, res, next) {
 app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
+app.get('/action_page', (req, res) => {
+res.render('signup.handlebars')
+})
 
 
 
