@@ -1,11 +1,16 @@
-function regNumbers(){
-    
-    function regInput(){
-        var database = await pool.query('insert * from cars WHERE reg_number = $1', [reg_number]);
+ 
+ module.exports= function regNumbers(){
+   var database; 
+    function addNumber(){
+
+    database = pool.query('insert * from cars WHERE reg_number = $1', [reg_number]);
         
     }
-
+    function regadd(){
+        return database
+    }
  return{
-     regInput
+    addNumber,
+    regadd
  }
 }

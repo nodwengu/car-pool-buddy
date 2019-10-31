@@ -1,24 +1,24 @@
 <div class="row">
-    <div class="Container">
-      
-   <h1>Cars info<h1>
+  <div class="Container">
 
-<div class="Reg">Registrating Numbers:
-       <input type="text" name="Numbers" placeholder="Enter your reg number"  value="" id="field_1"> 
-    </div>
+    <h1>Cars info</h1>
+
+        <form action="/information" method="post">
          
-    
-    <div class="seats">
-    <select name="Numbers of seats">
-      <option value="Seats">Seats</option>
-    <option value= 2>2</option>
-    <option value= 3>3</option>
-    <option value= 4>4</option>
-    <option value= 6>6</option>
-  </select>
-  <form action="/" method="post">
-        <button class="addButton" type="submit" name="addButton" value="add Reg" id="greetId"> Add Reg</button>
-</div>
-   </div>
-</form>
+ <div class="Reg">Registrating Numbers:
+          <input type="text" name="Numbers" placeholder="Enter your reg number" value="" id="field_1"> 
+        </div>   
+        
+          <select name="Numbers of seats">
+            <option value="Seats">Seats</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=6>6</option>
+          </select>
+          
+          <button class="addButton" type="submit" name="addButton" value="add Reg" id="greetId"> Add Reg</button>
+       <div class="message">{{reg_number}}</div>
+        </form>
+  </div>
 </div>

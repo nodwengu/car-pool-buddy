@@ -54,9 +54,17 @@ app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
-app.get('/information', (req, res) => {
-  res.render('Info')
+app.get('/interest', (req, res, next) => {
+  res.render('interest');
+});
 
+app.get('/information', (req, res) => {
+  res.render('Info');
+
+});
+app.post('/information', (req, res) => {
+ console.log(req.body)
+ 
 });
 
 app.use(errorHandler);
