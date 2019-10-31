@@ -6,7 +6,9 @@ CREATE TABLE users(
     email TEXT NOT NULL, 
     usertype TEXT NOT NULL,
     phone TEXT NOT NULL,
-    
+    destination TEXT NOT NULL,
+    time_slot TEXT NOT NULL,
+    price_option TEXT NOT NULL
 );
 
 CREATE TABLE cars(
