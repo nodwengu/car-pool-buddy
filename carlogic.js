@@ -1,9 +1,9 @@
  
- module.exports= function regNumbers(){
+ module.exports= function regNumbers(pool){
    var database; 
-    function addNumber(){
-
-    database = pool.query('insert * from cars WHERE reg_number = $1', [reg_number]);
+    function addNumber(seatNUmber){
+      var Regnumber = seatNUmber;
+    database = pool.query('insert into cars(reg_number) values($1)'[Regnumber]);
         
     }
     function regadd(){

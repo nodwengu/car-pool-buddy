@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const session = require('express-session');
-
+const regNumber = require("./carlogic");
 const app = express();
 
 const { Pool, Client } = require('pg');
@@ -15,13 +15,13 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool_db';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/my_cars';
 
 const pool = new Pool({
   connectionString,
   ssl: useSSL
 });
-
+const numbers =regNumber(pool)
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -63,7 +63,9 @@ app.get('/information', (req, res) => {
 
 });
 app.post('/information', (req, res) => {
- console.log(req.body)
+ res.render("Info",{
+   messege: numbers.addNumber()
+ })
  
 });
 
