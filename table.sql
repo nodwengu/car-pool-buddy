@@ -6,15 +6,10 @@ CREATE TABLE users(
     email TEXT NOT NULL, 
     usertype TEXT NOT NULL,
     phone TEXT NOT NULL,
-<<<<<<< HEAD
     destination TEXT NOT NULL,
     pick_up TEXT NOT NULL,
     time_slot INT NOT NULL,
     price INT NOT NULL
-
-=======
-    
->>>>>>> ff10608d8b546a05847a7cd5451016c8402c6175
 );
 
 CREATE TABLE cars(
