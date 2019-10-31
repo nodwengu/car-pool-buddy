@@ -1,48 +1,13 @@
 <div class="row">
-<form action="/info-page" method="get">
-    <h1>Communtor info<h1>
-      <div class="to">
-    <select name="Pick up">
-      <option value="Pick up">Pick up</option>
-    <option value="Cape Town">Cape Town</option>
-    <option value="Joe Slovo">Joe Slovo</option>
-    <option value="Machine PLain">Machine PLain</option>
-    <option value="Khayelitsha">Khayelitsha</option>
-  </select>
-  </div>
-   <div class="where">
-    <select name="Where to">
-        <option value="Where to">Where to</option>
-    <option value="Cape Town">Cape Town</option>
-    <option value="Joe Slovo">Joe Slovo</option>
-    <option value="Machine PLain">Machine PLain</option>
-    <option value="Khayelitsha">Khayelitsha</option>
-  </select>
-  </div>
-    <div class="times">
-      <select name="Time">
-         <option value="Time slots">Time slots</option>
-    <option value="6:00am to 7:00am">6.00am 7.00am</option>
-    <option value="7:30am to 8:00am">7:30am to 8:00am</option>
-    <option value="8:30am to 9:00am">8:30am to 9:00am</option>
-    <option value="9:30am to 10:am">9:30am to 10:am</option>
-  </select>
-</div>
-<div class="price">
-        <select name="Price options">
-    <option value="Price options">Price options</option>
-    <option value="R10-R20">R10-R20</option>
-    <option value="R30-R40">R30-R40</option>
-    <option value="R50-R60">R50-R60</option>
-    <option value="R70-R80">R70-R80</option>
-  </select>
-  </div>
-   
+    <div class="Container">
+      
    <h1>Cars info<h1>
 
 <div class="Reg">Registrating Numbers:
-       <input type="text" name="Numbers" placeholder="Enter your reg number"  value="" id="field_1">
+       <input type="text" name="Numbers" placeholder="Enter your reg number"  value="" id="field_1"> 
     </div>
+         
+    
     <div class="seats">
     <select name="Numbers of seats">
       <option value="Seats">Seats</option>
@@ -51,7 +16,9 @@
     <option value= 4>4</option>
     <option value= 6>6</option>
   </select>
+  <form action="/" method="post">
+        <button class="addButton" type="submit" name="addButton" value="add Reg" id="greetId"> Add Reg</button>
 </div>
-   
+   </div>
 </form>
 </div>
