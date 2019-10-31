@@ -6,6 +6,7 @@ CREATE TABLE users(
     email TEXT NOT NULL, 
     usertype TEXT NOT NULL,
     phone TEXT NOT NULL,
+    
 );
 
 CREATE TABLE cars(

@@ -47,6 +47,9 @@ function errorHandler(err, req, res, next) {
 }
 
 
+
+
+
 app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
@@ -55,7 +58,10 @@ app.get('/interest', (req, res, next) => {
   res.render('interest');
 });
 
+app.get('/information', (req, res) => {
 
+
+});
 
 app.use(errorHandler);
 
