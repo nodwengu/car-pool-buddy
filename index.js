@@ -58,19 +58,22 @@ app.get('/', (req, res, next) => {
 });
 
 app.get('/interest', async( req, res, next) => {
+   // console.log( await people.thumbsUp());
+  
+   res.render('interest', {
+      
+    counter: await people.thumbsUp(),
+    carcount: await people.carsAvailable()
+  }); 
+});
 
 app.get('/information', (req, res) => {
 
-    console.log( await people.thumbsUp());
-  
-    res.render('interest', {
-      
-      counter: await people.thumbsUp()
-    }); 
+   
 
 });
 
-});
+
 
 app.use(errorHandler);
 
