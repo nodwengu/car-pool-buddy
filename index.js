@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const session = require('express-session');
+const peopleInterested = require('./interests')
+
 
 const app = express();
 
@@ -21,6 +23,7 @@ const pool = new Pool({
   connectionString,
   ssl: useSSL
 });
+const people = peopleInterested(pool)
 
 app.use(session({
   secret: 'keyboard cat',
@@ -54,12 +57,18 @@ app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
-app.get('/interest', (req, res, next) => {
-  res.render('interest');
-});
+app.get('/interest', async( req, res, next) => {
 
 app.get('/information', (req, res) => {
 
+    console.log( await people.thumbsUp());
+  
+    res.render('interest', {
+      
+      counter: await people.thumbsUp()
+    }); 
+
+});
 
 });
 
