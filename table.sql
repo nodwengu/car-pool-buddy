@@ -8,8 +8,8 @@ CREATE TABLE users(
     phone TEXT NOT NULL,
     destination TEXT NOT NULL,
     pick_up TEXT NOT NULL,
-    time_slot INT NOT NULL,
-    price INT NOT NULL
+    time_slot TEXT NOT NULL,
+    price TEXT NOT NULL
 );
 
 CREATE TABLE cars(

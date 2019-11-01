@@ -6,7 +6,9 @@ const flash = require('express-flash');
 const session = require('express-session');
 const regNumber = require("./carlogic");
 const peopleInterested = require('./interests')
+
 const Carlogic = require('./carlogic');
+
 const app = express();
 
 const { Pool, Client } = require('pg');
@@ -17,16 +19,17 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/my_cars';
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool_db';
 
 const pool = new Pool({
   connectionString,
   ssl: useSSL
 });
 
-
 const people = peopleInterested(pool);
 const carlogic = Carlogic(pool);
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -50,14 +53,27 @@ function errorHandler(err, req, res, next) {
   res.status(500);
   res.render('error', { error: err });
 }
-
-
+21
 
 
 
 app.get('/', (req, res, next) => {
+
   res.send('<h2>The home page!!</h2>');
 });
+
+app.get('/interest', async( req, res, next) => {
+   // console.log( await people.thumbsUp());
+  
+   res.render('interest', {
+app.get('/action_page', (req, res) => {
+  res.render('signup.handlebars')
+});
+
+// app.get('/action_page', (req, res) => {
+//   res.render('signup.handlebars')
+
+// });
 
 app.get('/interest', async (req, res, next) => {
   console.log(await people.thumbsUp());
@@ -67,11 +83,9 @@ app.get('/interest', async (req, res, next) => {
   });
 });
 
-app.get('/information', (req, res) => {
-  res.render('Info');
-});
 
-app.post('/information', async(req, res,next) => {
+app.post('/action_page', async(req, res, next) => {
+
   try {
     
     await carlogic.addNumber({
@@ -80,11 +94,53 @@ app.post('/information', async(req, res,next) => {
       user_id: 1
     })
   }
+
+    let data = {
+      name: req.body.name,
+      email: req.body.email,
+      usertype: req.body.type,
+      phone: req.body.num,
+      pick_up: req.body.PickUp,
+      destination: req.body.WhereTo,
+      time_slot: req.body.Time,
+      price: req.body.PriceOptions,
+    }
+    if(req.body.type == "commuter") {
+      res.redirect('/');
+    } else {
+      res.redirect('/');
+    }
+    await accountApp.setUserData(data) 
+
+  } 
   catch (error) {
-    next(error);
+    next(error)
   }
+
+})
+
+    const data ={
+      email,
+      name,
+      num,
+      pickUp,
+      whereTo,
+      time,
+      priceOptions,
+      Type
+      
+        } = req.body
+      
+    counter: await people.thumbsUp(),
+    carcount: await people.carsAvailable()
+  }); 
 });
 
+app.get('/information', (req, res) => {
+
+   
+
+});
 
 
 
