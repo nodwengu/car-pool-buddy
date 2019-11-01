@@ -9,7 +9,7 @@ CREATE TABLE users(
     destination TEXT NOT NULL,
     pick_up TEXT NOT NULL,
     time_slot INT NOT NULL,
-    price INT NOT NULL,
+    price INT NOT NULL
 );
 
 CREATE TABLE cars(
