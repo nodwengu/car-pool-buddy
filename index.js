@@ -5,16 +5,11 @@ const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const peopleInterested = require('./interests')
-const Carlogic = require('./carlogic');
 
 
 const app = express();
-const AccountPage = require('./signup');
 
-const {
-  Pool,
-  Client
-} = require('pg');
+const { Pool, Client } = require('pg');
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
@@ -22,14 +17,17 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
+<<<<<<< HEAD
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/car_pool';
+=======
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool_db';
+>>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
 
 const pool = new Pool({
   connectionString,
   ssl: useSSL
 });
-const people = peopleInterested(pool);
-const carlogic = Carlogic(pool);
+const people = peopleInterested(pool)
 
 app.use(session({
   secret: 'keyboard cat',
@@ -40,33 +38,36 @@ app.use(session({
 app.use(flash());
 
 //setup template handlebars as the template engine
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
-}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
 
-const accountApp = AccountPage(pool);
-
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', {
-    error: err
-  });
+  res.render('error', { error: err });
 }
 21
 
 
 
 app.get('/', (req, res, next) => {
+<<<<<<< HEAD
+=======
+  res.send('<h2>The home page!!</h2>');
+});
+
+app.get('/interest', async( req, res, next) => {
+   // console.log( await people.thumbsUp());
+  
+   res.render('interest', {
+app.get('/action_page', (req, res) => {
+>>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
   res.render('signup.handlebars')
 });
 
@@ -87,6 +88,7 @@ app.get('/interest', async (req, res, next) => {
 app.post('/action_page', async(req, res, next) => {
 
   try {
+<<<<<<< HEAD
     let data = {
       name: req.body.name,
       email: req.body.email,
@@ -112,7 +114,30 @@ app.post('/action_page', async(req, res, next) => {
 })
 
 
+=======
+    const data ={
+      email,
+      name,
+      num,
+      pickUp,
+      whereTo,
+      time,
+      priceOptions,
+      Type
+      
+        } = req.body
+      
+    counter: await people.thumbsUp(),
+    carcount: await people.carsAvailable()
+  }); 
+});
 
+app.get('/information', (req, res) => {
+
+   
+>>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
+
+});
 
 
 
