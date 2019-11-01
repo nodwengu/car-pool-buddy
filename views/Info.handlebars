@@ -4,12 +4,7 @@
     <h1>Cars info</h1>
 
         <form action="/information" method="post">
-         
- <div class="Reg">Registrating Numbers:
-          <input type="text" name="Numbers" placeholder="Enter your reg number" value="" id="field_1"> 
-        </div>   
-        
-          <select name="Numbers of seats">
+         <select name="seatsNumber">
             <option value="Seats">Seats</option>
             <option value=2>2</opntion>
             <option value=3>3</option>
@@ -17,8 +12,14 @@
             <option value=6>6</option>
           </select>
           
+ <div class="Reg">Registrating Numbers:
+          <input type="text" name="number" placeholder="Enter your reg number" value="" id="field_1"> 
+        </div>   
+        
+          
           <button class="addButton" type="submit" name="addButton" value="add Reg" id="greetId"> Add Reg</button>
        <div class="message">{{reg_number}}</div>
+         <div class="message">{{seats}}</div>
         </form>
   </div>
 </div>

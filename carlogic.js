@@ -1,17 +1,15 @@
- 
- module.exports= function regNumbers(pool){
-   var database; 
-    function addNumber(seatNumber){
-      var Regnumber = seatNumber;
-      
-    database = pool.query('insert into cars(reg_number) values($1)'[Regnumber]);
-        
-    }
-    function regadd(){
-        return database;
-    }
- return{
-    addNumber,
-    regadd
- }
+
+module.exports = function regNumbers(pool) {
+
+   async function addNumber(cars) {
+      let data = [cars.seats, cars.reg_number, cars.user_id];
+      let query = `INSERT INTO cars(seats,reg_number,user_id) VALUES($1, $2, $3)`;
+      return await pool.query(query, data);
+   }
+
+
+   return {
+      addNumber,
+
+   }
 }

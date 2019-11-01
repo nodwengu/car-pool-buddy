@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const regNumber = require("./carlogic");
+const peopleInterested = require('./interests')
+const Carlogic = require('./carlogic');
 const app = express();
 
 const { Pool, Client } = require('pg');
@@ -15,13 +17,16 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/my_cars';
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/my_cars';
 
 const pool = new Pool({
   connectionString,
   ssl: useSSL
 });
-const numbers =regNumber(pool)
+
+
+const people = peopleInterested(pool);
+const carlogic = Carlogic(pool);
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -54,20 +59,34 @@ app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
-app.get('/interest', (req, res, next) => {
-  res.render('interest');
+app.get('/interest', async (req, res, next) => {
+  console.log(await people.thumbsUp());
+  res.render('interest', {
+
+    counter: await people.thumbsUp()
+  });
 });
 
 app.get('/information', (req, res) => {
   res.render('Info');
+});
 
+app.post('/information', async(req, res,next) => {
+  try {
+    
+    await carlogic.addNumber({
+      seats: req.body.seatsNumber,
+      reg_number: req.body.number,
+      user_id: 1
+    })
+  }
+  catch (error) {
+    next(error);
+  }
 });
-app.post('/information', (req, res) => {
- res.render("Info",{
-   messege: numbers.addNumber()
- })
- 
-});
+
+
+
 
 app.use(errorHandler);
 
