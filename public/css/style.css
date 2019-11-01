@@ -1,7 +1,41 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
 
+
+body {
+  background-color: brown;
+  
+}
+.container{
+  margin-right: 30em;
+}
+
+h1{
+margin-left: 15em;
+}
+body{ 
+  background-color: cyan;
+   background-image: url(/css/back.jpeg); 
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.counter{
+  margin-top: 10em; 
+  margin-left: 15em;
+
+}
 
 .seats{
-  margin-top: 10em;
+  margin-top: 5em;
+  margin-left: 20em;
   position: relative;
   width: 50%; 
 }
+
