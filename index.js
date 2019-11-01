@@ -71,17 +71,16 @@ app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
-<<<<<<< HEAD
 app.get('/action_page', (req, res) => {
   res.render('signup.handlebars')
-=======
+});
+
 app.get('/interest', async (req, res, next) => {
   console.log(await people.thumbsUp());
   res.render('interest', {
 
     counter: await people.thumbsUp()
   });
->>>>>>> 96673206a29f1677f809b777290a0bd898988621
 });
 
 app.post('/action_page', async(req, res, next) => {
