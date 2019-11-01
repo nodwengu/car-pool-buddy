@@ -75,6 +75,14 @@ app.get('/action_page', (req, res) => {
   res.render('signup.handlebars')
 });
 
+app.get('/interest', async (req, res, next) => {
+  console.log(await people.thumbsUp());
+  res.render('interest', {
+
+    counter: await people.thumbsUp()
+  });
+});
+
 
 app.post('/action_page', async(req, res, next) => {
 
