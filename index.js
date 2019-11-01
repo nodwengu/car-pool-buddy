@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const peopleInterested = require('./interests')
+const Carlogic = require('./carlogic');
 
 
 const app = express();
@@ -23,7 +24,8 @@ const pool = new Pool({
   connectionString,
   ssl: useSSL
 });
-const people = peopleInterested(pool)
+const people = peopleInterested(pool);
+const carlogic = Carlogic(pool);
 
 app.use(session({
   secret: 'keyboard cat',
@@ -57,26 +59,33 @@ app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
-app.get('/interest', async( req, res, next) => {
+app.get('/interest', async (req, res, next) => {
+  console.log(await people.thumbsUp());
+  res.render('interest', {
+
+    counter: await people.thumbsUp()
+  });
+});
 
 app.get('/information', (req, res) => {
   res.render('Info');
 });
-  
-app.post('/information', (req, res) => {
- console.log(req.body)
- 
-=======
-    console.log( await people.thumbsUp());
-  
-    res.render('interest', {
-      
-      counter: await people.thumbsUp()
-    }); 
 
+app.post('/information', async(req, res,next) => {
+  try {
+    await carlogic.addNumber({
+      seats: req.body.number,
+      reg_number: req.body.seatsNumber,
+      user_id: 1
+    })
+  }
+  catch (error) {
+    next(error);
+  }
 });
 
-});
+
+
 
 app.use(errorHandler);
 
