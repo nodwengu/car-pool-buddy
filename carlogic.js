@@ -1,6 +1,5 @@
 
 module.exports = function regNumbers(pool) {
-
    async function addNumber(car) {
       
       let data = [car.seats, car.reg_number, car.user_id];
@@ -8,12 +7,9 @@ module.exports = function regNumbers(pool) {
       return await pool.query(query, data);
    }
 
-   function regadd() {
-      return "database"
-   }
 
    return {
       addNumber,
-      regadd
+
    }
 }

@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const session = require('express-session');
+const regNumber = require("./carlogic");
 const peopleInterested = require('./interests')
 
+const Carlogic = require('./carlogic');
 
 const app = express();
 
@@ -17,17 +19,16 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-<<<<<<< HEAD
-const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/car_pool';
-=======
+
 const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool_db';
->>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
 
 const pool = new Pool({
   connectionString,
   ssl: useSSL
 });
-const people = peopleInterested(pool)
+
+const people = peopleInterested(pool);
+const carlogic = Carlogic(pool);
 
 app.use(session({
   secret: 'keyboard cat',
@@ -57,8 +58,7 @@ function errorHandler(err, req, res, next) {
 
 
 app.get('/', (req, res, next) => {
-<<<<<<< HEAD
-=======
+
   res.send('<h2>The home page!!</h2>');
 });
 
@@ -67,7 +67,6 @@ app.get('/interest', async( req, res, next) => {
   
    res.render('interest', {
 app.get('/action_page', (req, res) => {
->>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
   res.render('signup.handlebars')
 });
 
@@ -88,7 +87,14 @@ app.get('/interest', async (req, res, next) => {
 app.post('/action_page', async(req, res, next) => {
 
   try {
-<<<<<<< HEAD
+    
+    await carlogic.addNumber({
+      seats: req.body.seatsNumber,
+      reg_number: req.body.number,
+      user_id: 1
+    })
+  }
+
     let data = {
       name: req.body.name,
       email: req.body.email,
@@ -113,8 +119,6 @@ app.post('/action_page', async(req, res, next) => {
 
 })
 
-
-=======
     const data ={
       email,
       name,
@@ -135,7 +139,6 @@ app.post('/action_page', async(req, res, next) => {
 app.get('/information', (req, res) => {
 
    
->>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
 
 });
 
