@@ -71,18 +71,10 @@ app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
-<<<<<<< HEAD
 app.get('/action_page', (req, res) => {
   res.render('signup.handlebars')
-=======
-app.get('/interest', async (req, res, next) => {
-  console.log(await people.thumbsUp());
-  res.render('interest', {
-
-    counter: await people.thumbsUp()
-  });
->>>>>>> 96673206a29f1677f809b777290a0bd898988621
 });
+
 
 app.post('/action_page', async(req, res, next) => {
 
@@ -108,27 +100,6 @@ app.post('/action_page', async(req, res, next) => {
   }
 console.log(req.body);
 
-  // var email = req.body.email
-  // var password = req.body.psw
-  // var contactNum = req.body.num
-  // var pickUpSpot = req.body.PickUp
-  // var destination = req.body.whereTo
-  // var timeSlots = req.body.Time
-  // var price = req.body.PriceOptions
-    
-  // const data ={
-  //   email,
-  //   name,
-  //   num,
-  //   pickUp,
-  //   whereTo,
-  //   time,
-  //   priceOptions,
-  //   Type
-    
-  //     } = req.body
-    
-  //     accountApp.setUserData(data)
     
 
 
@@ -136,22 +107,6 @@ console.log(req.body);
 })
 
 
-app.get('/information', (req, res) => {
-  res.render('Info');
-});
-
-app.post('/information', async(req, res,next) => {
-  try {
-    await carlogic.addNumber({
-      seats: req.body.number,
-      reg_number: req.body.seatsNumber,
-      user_id: 1
-    })
-  }
-  catch (error) {
-    next(error);
-  }
-});
 
 
 
