@@ -22,7 +22,7 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool';
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/car_pool';
 
 const pool = new Pool({
   connectionString,
@@ -62,18 +62,18 @@ function errorHandler(err, req, res, next) {
     error: err
   });
 }
-
-
+21
 
 
 
 app.get('/', (req, res, next) => {
-  res.send('<h2>The home page!!</h2>');
-});
-
-app.get('/action_page', (req, res) => {
   res.render('signup.handlebars')
 });
+
+// app.get('/action_page', (req, res) => {
+//   res.render('signup.handlebars')
+
+// });
 
 app.get('/interest', async (req, res, next) => {
   console.log(await people.thumbsUp());
@@ -87,30 +87,27 @@ app.get('/interest', async (req, res, next) => {
 app.post('/action_page', async(req, res, next) => {
 
   try {
-    const data ={
-      email,
-      name,
-      num,
-      pickUp,
-      whereTo,
-      time,
-      priceOptions,
-      Type
-      
-        } = req.body
-      
-        accountApp.setUserData(data) 
-    console.log(await accountApp.getUserData());
-    
+    let data = {
+      name: req.body.name,
+      email: req.body.email,
+      usertype: req.body.type,
+      phone: req.body.num,
+      pick_up: req.body.PickUp,
+      destination: req.body.WhereTo,
+      time_slot: req.body.Time,
+      price: req.body.PriceOptions,
+    }
+    if(req.body.type == "commuter") {
+      res.redirect('/');
+    } else {
+      res.redirect('/');
+    }
+    await accountApp.setUserData(data) 
+
   } 
   catch (error) {
     next(error)
   }
-console.log(req.body);
-
-    
-
-
 
 })
 

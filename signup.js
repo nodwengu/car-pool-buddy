@@ -12,7 +12,7 @@ module.exports= function SignUp(pool){
             obj.price
         ]
 
-    let query = "INSERT INTO users(name,email,usertype,phone, destination, pick_up, time_slot, price) VALUES ($1,$2, $3, $4, $5, $6, $7);";
+    let query = "INSERT INTO users(name,email,usertype,phone, destination, pick_up, time_slot, price) VALUES ($1,$2, $3, $4, $5, $6, $7, $8)";
     let results = await pool.query(query, data);
     return results.rows
     
