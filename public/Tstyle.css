@@ -1,0 +1,30 @@
+body{ 
+    background-color: cyan;
+     background-image: url(/css/back.jpeg);
+  }
+  h1{
+    margin-left: 8em;
+    color: darkcyan;
+    font-size: 50px;
+    }
+.seats{
+    margin-top: 3em;
+    margin-left: 20em;
+    position: relative;
+    width: 50%; 
+  }
+  .dbButton{
+    text-transform: uppercase;
+  text-decoration: none;
+  background: darkcyan;
+  padding: 20px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-left: 30em;
+  }
+  .counter{
+    margin-top: 5em;
+    margin-left: 12em;
+    position: relative;
+    width: 50%;
+  }
