@@ -9,8 +9,12 @@ const Carlogic = require('./carlogic');
 
 
 const app = express();
+const AccountPage = require('./signup');
 
-const { Pool, Client } = require('pg');
+const {
+  Pool,
+  Client
+} = require('pg');
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
@@ -18,7 +22,7 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool_db';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool';
 
 const pool = new Pool({
   connectionString,
@@ -36,19 +40,27 @@ app.use(session({
 app.use(flash());
 
 //setup template handlebars as the template engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
 
+const accountApp = AccountPage(pool);
+
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 // parse application/json
 app.use(bodyParser.json());
 
 function errorHandler(err, req, res, next) {
   res.status(500);
-  res.render('error', { error: err });
+  res.render('error', {
+    error: err
+  });
 }
 
 
@@ -59,13 +71,70 @@ app.get('/', (req, res, next) => {
   res.send('<h2>The home page!!</h2>');
 });
 
+<<<<<<< HEAD
+app.get('/action_page', (req, res) => {
+  res.render('signup.handlebars')
+=======
 app.get('/interest', async (req, res, next) => {
   console.log(await people.thumbsUp());
   res.render('interest', {
 
     counter: await people.thumbsUp()
   });
+>>>>>>> 96673206a29f1677f809b777290a0bd898988621
 });
+
+app.post('/action_page', async(req, res, next) => {
+
+  try {
+    const data ={
+      email,
+      name,
+      num,
+      pickUp,
+      whereTo,
+      time,
+      priceOptions,
+      Type
+      
+        } = req.body
+      
+        accountApp.setUserData(data) 
+    console.log(await accountApp.getUserData());
+    
+  } 
+  catch (error) {
+    next(error)
+  }
+console.log(req.body);
+
+  // var email = req.body.email
+  // var password = req.body.psw
+  // var contactNum = req.body.num
+  // var pickUpSpot = req.body.PickUp
+  // var destination = req.body.whereTo
+  // var timeSlots = req.body.Time
+  // var price = req.body.PriceOptions
+    
+  // const data ={
+  //   email,
+  //   name,
+  //   num,
+  //   pickUp,
+  //   whereTo,
+  //   time,
+  //   priceOptions,
+  //   Type
+    
+  //     } = req.body
+    
+  //     accountApp.setUserData(data)
+    
+
+
+
+})
+
 
 app.get('/information', (req, res) => {
   res.render('Info');
