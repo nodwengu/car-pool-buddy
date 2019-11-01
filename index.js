@@ -17,7 +17,11 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
+<<<<<<< HEAD
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/car_pool';
+=======
 const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/car_pool_db';
+>>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
 
 const pool = new Pool({
   connectionString,
@@ -48,12 +52,13 @@ function errorHandler(err, req, res, next) {
   res.status(500);
   res.render('error', { error: err });
 }
-
-
+21
 
 
 
 app.get('/', (req, res, next) => {
+<<<<<<< HEAD
+=======
   res.send('<h2>The home page!!</h2>');
 });
 
@@ -62,8 +67,14 @@ app.get('/interest', async( req, res, next) => {
   
    res.render('interest', {
 app.get('/action_page', (req, res) => {
+>>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
   res.render('signup.handlebars')
 });
+
+// app.get('/action_page', (req, res) => {
+//   res.render('signup.handlebars')
+
+// });
 
 app.get('/interest', async (req, res, next) => {
   console.log(await people.thumbsUp());
@@ -73,9 +84,37 @@ app.get('/interest', async (req, res, next) => {
   });
 });
 
+
 app.post('/action_page', async(req, res, next) => {
 
   try {
+<<<<<<< HEAD
+    let data = {
+      name: req.body.name,
+      email: req.body.email,
+      usertype: req.body.type,
+      phone: req.body.num,
+      pick_up: req.body.PickUp,
+      destination: req.body.WhereTo,
+      time_slot: req.body.Time,
+      price: req.body.PriceOptions,
+    }
+    if(req.body.type == "commuter") {
+      res.redirect('/');
+    } else {
+      res.redirect('/');
+    }
+    await accountApp.setUserData(data) 
+
+  } 
+  catch (error) {
+    next(error)
+  }
+
+})
+
+
+=======
     const data ={
       email,
       name,
@@ -96,6 +135,7 @@ app.post('/action_page', async(req, res, next) => {
 app.get('/information', (req, res) => {
 
    
+>>>>>>> bf4b3bfbee0c063ab77d8c225f669e41d0a10f81
 
 });
 
