@@ -60,7 +60,13 @@ app.get('/', (req, res, next) => {
 app.get('/interest', async( req, res, next) => {
 
 app.get('/information', (req, res) => {
-
+  res.render('Info');
+});
+  
+app.post('/information', (req, res) => {
+ console.log(req.body)
+ 
+=======
     console.log( await people.thumbsUp());
   
     res.render('interest', {
